@@ -1,0 +1,31 @@
+hystrix: 
+  command: 
+    default: 
+      execution: 
+        isolation: 
+          thread: 
+            timeoutInMilliseconds: 30000
+            
+ribbon: 
+  ReadTimeout: 600000
+  connection-timeout: 600000
+  eureka: 
+    enabled: true
+
+zuul: 
+  host: 
+    connect-timeout-millis: 60000
+    max-per-route-connections: 60000
+    max-total-connections: 6000
+    socket-timeout-millis: 60000
+  semaphore: 
+    max-semaphores: 500
+
+---
+
+spring:
+  profiles: pcf
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.service-registry.credentials.uri:http://localhost:8282}/eureka
